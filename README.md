@@ -1,49 +1,41 @@
-# Architect plugin for OpenSearch / ElasticSearch
+# Architect plugin for OpenTelemetry + AWS X-Ray
 
-This is a [plugin](https://arc.codes/docs/en/guides/plugins/overview) for [Architect](https://arc.codes/) that installs an [Amazon OpenSearch Serverless](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless.html) collection for the application.
+This is a [plugin](https://arc.codes/docs/en/guides/plugins/overview) for [Architect](https://arc.codes/) that automatically instruments your Node.js Lambdas with [OpenTelemetry](https://opentelemetry.io) and sends tracing data and metrics to [AWS X-Ray](https://aws.amazon.com/xray/).
 
-When you are using Architect's [sandbox](https://arc.codes/docs/en/reference/cli/sandbox) mode, the plugin [downloads and runs Elasticsearch locally](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html#elasticsearch-install-packages).
-
-Pair this pacakge with [@nasa-gcn/architect-functions-search](https://github.com/nasa-gcn/architect-functions-search) to connect to the service from your Node.js Lambda function code.
+It adds the [AWS Distro for OpenTelemetry Lambda layer](https://aws-otel.github.io/docs/getting-started/lambda) to all of your Lambdas for which you have enabled tracing.
 
 ## Usage
 
 1.  Install this package using npm:
 
-        npm i -D @nasa-gcn/architect-plugin-search
+        npm i -D @nasa-gcn/architect-plugin-tracing
 
 2.  Add the following to your project's `app.arc` configuration file:
 
         @plugins
-        nasa-gcn/architect-plugin-search
+        nasa-gcn/architect-plugin-tracing
 
-3.  Optionally, create a file called `sandbox-search.json` or `sandbox-search.js` in your project and populate it with sample data to be passed to [`client.bulk()`](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/bulk_examples.html). Here are some examples.
+3.  Enable tracing for all Lambdas by adding the folllowing lines to your `app.arc` file, or for [an individual Lambda](https://arc.codes/docs/en/reference/configuration/function-config) by adding it to the Lambda's `config.arc` file:
 
-    ## sandbox-search.json
+        @aws
+        tracing true
 
-        [
-            {"index": {"_index": "movies", "_id": 1}},
-            {"title": "The Hunt for the Red October"},
-            {"index": {"_index": "movies", "_id": 2}},
-            {"title": "Star Trek II: The Wrath of Khan"}
-        ]
+4.  Optionally, you can inject additional OpenTelemetry configuration into a Lambda by adding a file called `tracing.js` to its source directory. Here is an example that adds [instrumentation for the Remix web framework](https://www.npmjs.com/package/opentelemetry-instrumentation-remix):
 
-    ## sandbox-search.js (constant data)
+        ```js
+        global.configureInstrumentations = () => {
+          const { DnsInstrumentation } = require('@opentelemetry/instrumentation-dns')
+          const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http')
+          const { NetInstrumentation } = require('@opentelemetry/instrumentation-net')
+          const {
+            RemixInstrumentation,
+          } = require('opentelemetry-instrumentation-remix')
 
-        module.exports = [
-            {"index": {"_index": "movies", "_id": 1}},
-            {"title": "The Hunt for the Red October"},
-            {"index": {"_index": "movies", "_id": 2}},
-            {"title": "Star Trek II: The Wrath of Khan"}
-        ]
-
-    ## sandbox-search.js (function or async function)
-
-        module.exports = function() {
-            return [
-                {"index": {"_index": "movies", "_id": 1}},
-                {"title": "The Hunt for the Red October"},
-                {"index": {"_index": "movies", "_id": 2}},
-                {"title": "Star Trek II: The Wrath of Khan"}
-            ]
+          return [
+            new DnsInstrumentation(),
+            new HttpInstrumentation(),
+            new NetInstrumentation(),
+            new RemixInstrumentation(),
+          ]
         }
+        ```
