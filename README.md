@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/@nasa-gcn/architect-plugin-tracing)](https://www.npmjs.com/package/@nasa-gcn/architect-plugin-tracing)
+
 # Architect plugin for OpenTelemetry + AWS X-Ray
 
 This is a [plugin](https://arc.codes/docs/en/guides/plugins/overview) for [Architect](https://arc.codes/) that automatically instruments your Node.js Lambdas with [OpenTelemetry](https://opentelemetry.io) and sends tracing data and metrics to [AWS X-Ray](https://aws.amazon.com/xray/).
