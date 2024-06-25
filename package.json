@@ -1,5 +1,6 @@
 {
   "name": "@nasa-gcn/architect-plugin-tracing",
+  "description": "Architect plugin for tracing Lambdas with OpenTelemetry and shipping results to AWS X-Ray",
   "version": "1.0.0",
   "repository": {
     "type": "git",
