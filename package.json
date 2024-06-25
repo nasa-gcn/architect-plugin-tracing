@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "github:nasa-gcn/architect-functions-tracing"
+    "url": "github:nasa-gcn/architect-plugin-tracing"
   },
   "license": "Apache-2.0",
   "contributors": [
