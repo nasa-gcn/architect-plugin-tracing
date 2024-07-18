@@ -28,7 +28,7 @@
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "esbuild": "^0.17.8",
-    "eslint": "^8.34.0",
+    "eslint": "^9.7.0",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^9.1.0",
     "lint-staged": "^13.1.2",
