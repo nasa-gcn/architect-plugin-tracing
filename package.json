@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@nasa-gcn/eslint-config-gitignore": "^0.0.1",
-    "@tsconfig/node14": "^1.0.3",
+    "@tsconfig/node14": "^14.1.2",
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "esbuild": "^0.17.8",
