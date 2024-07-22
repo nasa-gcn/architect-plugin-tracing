@@ -23,7 +23,7 @@
     "prepare": "run-p prepare:*"
   },
   "devDependencies": {
-    "@nasa-gcn/eslint-config-gitignore": "^0.0.1",
+    "@nasa-gcn/eslint-config-gitignore": "^0.0.2",
     "@tsconfig/node14": "^14.1.2",
     "@types/node": "^20.14.11",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
