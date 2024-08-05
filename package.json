@@ -26,7 +26,7 @@
     "@nasa-gcn/eslint-config-gitignore": "^0.0.2",
     "@tsconfig/node14": "^14.1.2",
     "@types/node": "^22.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
     "esbuild": "^0.23.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^9.1.0",
