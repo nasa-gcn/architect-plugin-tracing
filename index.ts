@@ -39,7 +39,7 @@ export const deploy = {
 
         props.Tracing = 'Active'
         layers.push({
-          'Fn::Sub': `arn:aws:lambda:\${AWS::Region}:901920570463:layer:aws-otel-nodejs-${config.architecture}-ver-1-9-1:1`,
+          'Fn::Sub': `arn:aws:lambda:\${AWS::Region}:901920570463:layer:aws-otel-nodejs-${config.architecture}-ver-1-18-1:4`,
         })
 
         props.Environment.Variables.AWS_LAMBDA_EXEC_WRAPPER =
