@@ -7,7 +7,7 @@
  */
 
 import { join } from 'path'
-import { exists } from './paths'
+import { exists } from './paths.js'
 
 export const deploy = {
   async start({
