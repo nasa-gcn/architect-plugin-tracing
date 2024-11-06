@@ -8,21 +8,6 @@ on:
       - main
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['16', '18']
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: NPM Install
-        run: npm ci
-      - name: Run eslint linter
-        run: npx eslint --max-warnings 0 .
-      - name: Run Prettier code style checks
-        run: npx prettier -c .
-      - name: Upload to Codecov.io
-        uses: codecov/codecov-action@v3
+    uses: nasa-gcn/.github/.github/workflows/node.yml@main
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

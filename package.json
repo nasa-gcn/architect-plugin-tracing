@@ -22,6 +22,9 @@
     "prepare:esbuild": "esbuild index.ts --bundle --packages=external --outfile=index.js --platform=node --format=esm --tree-shaking=true",
     "prepare": "run-p prepare:*"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@nasa-gcn/eslint-config-gitignore": "^0.0.2",
     "@tsconfig/node14": "^14.1.2",
