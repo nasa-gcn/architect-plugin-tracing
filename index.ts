@@ -39,7 +39,7 @@ export const deploy = {
 
         props.Tracing = 'Active'
         layers.push({
-          'Fn::Sub': `arn:aws:lambda:\${AWS::Region}:901920570463:layer:aws-otel-nodejs-${config.architecture}-ver-1-30-2:1`,
+          'Fn::Sub': `arn:aws:lambda:\${AWS::Region}:615299751070:layer:AWSOpenTelemetryDistroJs:14`,
         })
 
         props.Environment.Variables.AWS_LAMBDA_EXEC_WRAPPER =
@@ -55,7 +55,7 @@ export const deploy = {
     if (hasTracing) {
       const roleProps = cloudformation.Resources.Role.Properties
       ;(roleProps.ManagedPolicyArns ?? (roleProps.ManagedPolicyArns = [])).push(
-        'arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess'
+        'arn:aws:iam::aws:policy/CloudWatchLambdaApplicationSignalsExecutionRolePolicy'
       )
     }
 
