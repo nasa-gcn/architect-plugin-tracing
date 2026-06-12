@@ -43,7 +43,7 @@ export const deploy = {
         })
 
         props.Environment.Variables.AWS_LAMBDA_EXEC_WRAPPER =
-          '/opt/otel-handler'
+          '/opt/otel-instrument'
 
         if (await exists(join(path, 'tracing.js'))) {
           props.Environment.Variables.NODE_OPTIONS =
